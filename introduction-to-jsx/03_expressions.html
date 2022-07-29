@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello World!</title>
+
+    <!-- don't use this in production: -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+
+    <!-- target element -->
+    <div id="root1"></div>
+    <div id="root"></div>
+
+    <!-- load react -->
+    <script src="https://unpkg.com/react/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom/umd/react-dom.development.js" crossorigin></script>
+  
+    <!-- load html into root -->
+    <script defer type="text/babel">
+
+      function formatName(user) {
+        return user.firstName + ' ' + user.lastName;
+      }
+
+      const user = {
+        firstName: 'Peter',
+        lastName: 'Parker',
+        age: 18,
+        timeStamp: 7.5,
+      };
+
+      function getTimeGreeting(user) {
+        if (user.timeStamp <= 12) {
+          return <h1>Good morning, {formatName(user)}</h1>;
+        }
+        if (user.timeStamp <= 17) {
+          return <h1>Good afternoon, {formatName(user)}</h1>;
+        }
+        return <h1>Good evening, {formatName(user)}</h1>;
+      }
+
+      function getGreeting(user) {
+        if (user.age >= 18) {
+          return <h2>{formatName(user)} is an adult</h2>;
+        }
+        return <h2>{formatName(user)} is a minor</h2>;
+      }
+
+      ReactDOM.render(
+        getTimeGreeting(user),
+        document.getElementById('root1')
+      );
+
+      ReactDOM.render(
+        getGreeting(user),
+        document.getElementById('root')
+      );
+
+    </script>
+
+
+  </body>
+</html>
